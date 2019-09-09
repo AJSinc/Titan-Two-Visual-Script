@@ -17,6 +17,7 @@ namespace Titan_Two_Visual_Script
             int height = nestedImg.Height;
             int totalPix = width * height;
             if ((srcImg.Width < (width + xCoord)) || (srcImg.Height < (height + yCoord))) return false;
+            // speed all this up by shrinking images to < 20 pixels
             for (int x = 0; x < width; x++)
             {
                 for(int y = 0; y < height; y++)

@@ -16,9 +16,11 @@ namespace Titan_Two_Visual_Script.Visual_Script
         private static VisualScriptElement vselement;
         private static List<VisualScriptElement> group;
         private static List<List<VisualScriptElement>> groups;
+        private static string gvsPath;
         
         public static List<List<VisualScriptElement>> ReadGVS(string path)
         {
+            gvsPath = path;
             groups = new List<List<VisualScriptElement>>();
             if (!File.Exists(path)) throw new FileNotFoundException();
             xmlReader = XmlReader.Create(new StringReader(File.ReadAllText(path)));
@@ -86,8 +88,9 @@ namespace Titan_Two_Visual_Script.Visual_Script
                 case "imgpath":
                     if(text != null)
                     {
-                        if (!File.Exists(text)) throw new FileNotFoundException();
-                        vselement.Image = new Bitmap(Image.FromFile(text));
+                        String bmpPath = Path.GetDirectoryName(gvsPath) + "\\" + text;
+                        if (!File.Exists(bmpPath)) throw new FileNotFoundException();
+                        vselement.Image = new Bitmap(Image.FromFile(bmpPath));
                     }
                     text = null;
                     break;
