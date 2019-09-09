@@ -1,0 +1,6 @@
+
+
+- Add UI to Open scripts
+- Add ini for UI to remember last opened file location
+
+- Possibly change coordinates to be % 
