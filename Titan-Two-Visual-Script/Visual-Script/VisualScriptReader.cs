@@ -104,10 +104,7 @@ namespace Titan_Two_Visual_Script.Visual_Script
                     text = null;
                     break;
                 case "trigkey":
-                    if (text != null)
-                    {
-                        vselement.Key = Int32.Parse(text);
-                    }
+                    if (text != null) vselement.Key = Int32.Parse(text);
                     text = null;
                     break;
                 default:

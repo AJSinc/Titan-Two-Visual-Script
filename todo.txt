@@ -3,4 +3,6 @@
 - Add UI to Open scripts
 - Add ini for UI to remember last opened file location
 
-- Possibly change coordinates to be % 
+- Added sending key events for Visual Script running instance
+- Optimize image searching (shrink images, then compare)
+- Possibly change coordinates to be floating point percentage of screen
