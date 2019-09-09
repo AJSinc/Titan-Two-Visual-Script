@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29230.47
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan-Two-Visual-Script", "Titan-Two-Visual-Script\Titan-Two-Visual-Script.csproj", "{89650281-2606-4063-8BBF-A6CD1F0995B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89650281-2606-4063-8BBF-A6CD1F0995B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89650281-2606-4063-8BBF-A6CD1F0995B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89650281-2606-4063-8BBF-A6CD1F0995B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89650281-2606-4063-8BBF-A6CD1F0995B0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {95540C0F-02D9-4DD6-9C40-CD8AEBCDFB44}
+	EndGlobalSection
+EndGlobal
