@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,10 @@ namespace Titan_Two_Visual_Script
                 {
                     for (int xy = 0; xy < ElementGroups[i][k].Coords.Count; xy++)
                     {
-                        imgFound = NestedImageSearch.ImageRoughlyContains(ScreenGrabber.CaptureScreen(), ElementGroups[i][k].Image, ElementGroups[i][k].Coords[xy]);
+                        using (Bitmap screen = ScreenGrabber.CaptureScreen())
+                        {
+                            imgFound = NestedImageSearch.ImageRoughlyContains(screen, ElementGroups[i][k].Image, ElementGroups[i][k].Coords[xy]);
+                        }
                         if (imgFound) break;
                     }
                     if(imgFound)
