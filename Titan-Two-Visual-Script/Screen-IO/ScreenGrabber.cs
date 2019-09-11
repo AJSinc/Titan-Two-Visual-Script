@@ -19,6 +19,7 @@ namespace Titan_Two_Visual_Script
             var image = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, PixelFormat.Format32bppArgb);
             var gfx = Graphics.FromImage(image);
             gfx.CopyFromScreen(Screen.PrimaryScreen.Bounds.X, Screen.PrimaryScreen.Bounds.Y, 0, 0, Screen.PrimaryScreen.Bounds.Size, CopyPixelOperation.SourceCopy);
+            gfx.Dispose();
             return image;
         }
 
