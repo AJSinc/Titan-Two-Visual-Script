@@ -12,16 +12,16 @@ namespace Titan_Two_Visual_Script
     {
         private List<Point> coords;
         private Bitmap img;
-        private int triggerKeyIdx;
+        private string triggerKeyIdx;
 
 
         public VisualScriptElement()
         {
-            triggerKeyIdx = -1;
+            triggerKeyIdx = "";
             coords = new List<Point>();
         }
 
-        public VisualScriptElement(Bitmap img, List<Point> coords, int triggerKeyIdx)
+        public VisualScriptElement(Bitmap img, List<Point> coords, string triggerKeyIdx)
         {
             this.img = img;
             this.coords = coords;
@@ -44,7 +44,7 @@ namespace Titan_Two_Visual_Script
         
         public bool IsValid()
         {
-            return coords.Count > 0 && img != null && triggerKeyIdx != -1;
+            return coords.Count > 0 && img != null && triggerKeyIdx.Length != 0;
         }
 
         public List<Point> Coords
@@ -71,7 +71,7 @@ namespace Titan_Two_Visual_Script
             }
         }
 
-        public int Key
+        public string Key
         {
             get
             {
