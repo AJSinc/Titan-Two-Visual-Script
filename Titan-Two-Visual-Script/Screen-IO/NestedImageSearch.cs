@@ -33,10 +33,10 @@ namespace Titan_Two_Visual_Script
                     Color nestedCurPix = nestedImg.GetPixel(x, y);
                     Color SrcPix = srcImg.GetPixel(xCoord+x, yCoord+y);
 
-                    if (nestedCurPix.A == 0) continue;
+                    if (nestedCurPix.A < 20) continue;
                     if ((Math.Abs(nestedCurPix.R - SrcPix.R) > 10) || (Math.Abs(nestedCurPix.G - SrcPix.G) > 10) || (Math.Abs(nestedCurPix.R - SrcPix.R) > 10))
                     {
-                        if (((double)++nonMatchCount / (double)totalPix) > 0.05)
+                        if (((double)++nonMatchCount / (double)totalPix) > 0.075)
                         {
                             return false;
                         }
