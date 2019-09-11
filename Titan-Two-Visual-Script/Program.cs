@@ -2,29 +2,59 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Titan_Two_Visual_Script
 {
     class Program
     {
+
+        static string OpenFileWindow()
+        {
+            string path = string.Empty;
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "gvs files (*.gvs)|*.gvs";
+                openFileDialog.FilterIndex = 0;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    path = openFileDialog.FileName;
+                }
+
+            }
+            return path;
+        }
+
+        [STAThread]
         static void Main(string[] args)
         {
-            int tickCountTimer = 0;
-            String gvsPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\test.gvs";
-            VisualScript gvs = new VisualScript(gvsPath);
+
+            String gvsPath = OpenFileWindow();
+            if (!File.Exists(gvsPath)) Application.Exit();
+            VisualScript gvs = null;
+            try
+            {
+                gvs = new VisualScript(gvsPath);
+                Console.WriteLine("GVS loaded");
+            } catch (Exception e)
+            {
+                Console.WriteLine("Error opening GVS.\r\n" +
+                    e.ToString() +
+                    "\r\nPress any key to exit.");
+                Console.ReadKey();
+            }
             while (true)
             {
-                int currTick = Environment.TickCount & Int32.MaxValue;
-                if (currTick > tickCountTimer)
-                {
-                    tickCountTimer = currTick + 500;
-                    gvs.RunScriptInstance();
-                }
-                Thread.Sleep(10);
+                gvs.RunScriptInstance();
+                Thread.Sleep(200);
             }
         }
     }
