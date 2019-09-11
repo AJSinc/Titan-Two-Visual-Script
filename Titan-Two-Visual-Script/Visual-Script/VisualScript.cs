@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml;
 using Titan_Two_Visual_Script.Visual_Script;
 
@@ -29,14 +30,17 @@ namespace Titan_Two_Visual_Script
                     {
                         using (Bitmap screen = ScreenGrabber.CaptureScreen())
                         {
-                            imgFound = NestedImageSearch.ImageRoughlyContains(screen, ElementGroups[i][k].Image, ElementGroups[i][k].Coords[xy]);
+                            if(NestedImageSearch.ImageRoughlyContains(screen, ElementGroups[i][k].Image, ElementGroups[i][k].Coords[xy]))
+                            {
+                                imgFound = true;
+                                break;
+                            }
                         }
-                        if (imgFound) break;
                     }
                     if(imgFound)
                     {
-                        Console.Write("Test");
                         // send key data
+                        SendKeys.SendWait(ElementGroups[i][k].Key);
                         break;
                     }
                 }
