@@ -62,7 +62,6 @@ namespace Titan_Two_Visual_Script.Visual_Script
                     break;
 
             }
-
         }
 
         private static void HandleGVSEndElement(string element)
@@ -88,7 +87,7 @@ namespace Titan_Two_Visual_Script.Visual_Script
                 case "imgpath":
                     if(text != null)
                     {
-                        String bmpPath = Path.GetDirectoryName(gvsPath) + "\\" + text;
+                        String bmpPath = Path.GetDirectoryName(gvsPath) + "\\" + text.Replace('/', '\\');
                         if (!File.Exists(bmpPath)) throw new FileNotFoundException();
                         vselement.Image = new Bitmap(Image.FromFile(bmpPath));
                     }
@@ -98,13 +97,13 @@ namespace Titan_Two_Visual_Script.Visual_Script
                     if (text != null)
                     {
                         String[] xy = text.Split(',');
-                        if (xy.Length != 2) throw new InvalidDataException("Coordinate element must have 2 coordinates seperated by a ','");
+                        if (xy.Length != 2) throw new InvalidDataException("Coordinate elements must have 2 coordinates seperated by a ','");
                         vselement.AddCoordinates(new Point(Int32.Parse(xy[0]), Int32.Parse(xy[1])));
                     }
                     text = null;
                     break;
                 case "trigkey":
-                    if (text != null) vselement.Key = Int32.Parse(text);
+                    if (text != null) vselement.Key = text;
                     text = null;
                     break;
                 default:
