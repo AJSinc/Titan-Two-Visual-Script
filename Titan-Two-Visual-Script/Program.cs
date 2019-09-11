@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Titan_Two_Visual_Script
@@ -23,6 +24,7 @@ namespace Titan_Two_Visual_Script
                     tickCountTimer = currTick + 500;
                     gvs.RunScriptInstance();
                 }
+                Thread.Sleep(10);
             }
         }
     }
