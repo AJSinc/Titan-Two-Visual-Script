@@ -13,10 +13,15 @@ namespace Titan_Two_Visual_Script
 {
     class VisualScript
     {
+        public string ScriptName { get; set; }
+        public string ScriptAuthor { get; set; }
+
         private List<List<VisualScriptElement>> ElementGroups;
         public VisualScript(String path)
         {
-            ElementGroups = VisualScriptReader.ReadGVS(path);
+            ScriptName = VisualScriptReader.ReadGVSName(path);
+            ScriptAuthor = VisualScriptReader.ReadGVSAuthor(path);
+            ElementGroups = VisualScriptReader.ReadGVSElements(path);
         }
         
         public void RunScriptInstance()
@@ -26,18 +31,17 @@ namespace Titan_Two_Visual_Script
                 bool imgFound = false;
                 for(int k = 0; k < ElementGroups[i].Count; k++)
                 {
-                    for (int xy = 0; xy < ElementGroups[i][k].Coords.Count; xy++)
+                    using (Bitmap screen = ScreenGrabber.CaptureScreen())
+                    foreach(Point coords in ElementGroups[i][k].Coords)
                     {
-                        using (Bitmap screen = ScreenGrabber.CaptureScreen())
-                        {
-                            if(NestedImageSearch.ImageRoughlyContains(screen, ElementGroups[i][k].Image, ElementGroups[i][k].Coords[xy]))
-                            {
-                                imgFound = true;
-                                break;
-                            }
+                        if(ImageSearch.ImageRoughlyContains(screen, ElementGroups[i][k].Image, coords)) {
+                            Console.Write("Found");
+                            imgFound = true;
+                            break;
                         }
                     }
-                    if(imgFound)
+
+                    if (imgFound)
                     {
                         // send key data
                         SendKeys.SendWait(ElementGroups[i][k].Key);
