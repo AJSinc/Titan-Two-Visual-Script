@@ -13,7 +13,6 @@ namespace Titan_Two_Visual_Script
 {
     class Program
     {
-
         static string OpenFileWindow()
         {
             string path = string.Empty;
@@ -28,7 +27,6 @@ namespace Titan_Two_Visual_Script
                 {
                     path = openFileDialog.FileName;
                 }
-
             }
             return path;
         }
@@ -36,14 +34,14 @@ namespace Titan_Two_Visual_Script
         [STAThread]
         static void Main(string[] args)
         {
-
             String gvsPath = OpenFileWindow();
-            if (!File.Exists(gvsPath)) Application.Exit();
+            if (!File.Exists(gvsPath)) System.Environment.Exit(1);
             VisualScript gvs = null;
             try
             {
                 gvs = new VisualScript(gvsPath);
-                Console.WriteLine("GVS loaded");
+                Console.WriteLine("GVS \"" + gvs.ScriptName + "\" by \"" + gvs.ScriptAuthor + "\" loaded\r\n");
+
             } catch (Exception e)
             {
                 Console.WriteLine("Error opening GVS.\r\n" +
