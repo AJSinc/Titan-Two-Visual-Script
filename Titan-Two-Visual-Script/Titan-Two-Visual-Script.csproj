@@ -74,7 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Screen-IO\ImageDiff.cs" />
-    <Compile Include="Screen-IO\NestedImageSearch.cs" />
+    <Compile Include="Screen-IO\ImageSearch.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Visual-Script\VisualScriptElement.cs" />
