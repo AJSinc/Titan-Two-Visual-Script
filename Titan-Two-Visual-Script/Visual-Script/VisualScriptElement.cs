@@ -27,16 +27,7 @@ namespace Titan_Two_Visual_Script
             this.coords = coords;
             this.triggerKeyIdx = triggerKeyIdx;
         }
-
-        public bool VisualElementFoundIn(Bitmap srcImg)
-        {
-            foreach(Point p in coords)
-            {
-                if (NestedImageSearch.ImageRoughlyContains(srcImg, this.img, p.X, p.Y)) return true;
-            }
-            return false;
-        }
-
+        
         public void AddCoordinates(Point xy)
         {
             if(!coords.Contains(xy)) coords.Add(xy);
