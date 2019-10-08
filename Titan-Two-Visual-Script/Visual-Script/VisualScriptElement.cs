@@ -10,69 +10,48 @@ namespace Titan_Two_Visual_Script
 {
     class VisualScriptElement
     {
-        private List<Point> coords;
-        private Bitmap img;
-        private string triggerKeyIdx;
+        public List<Point> Coords { get; set; }
+        public Bitmap Image { get; set; }
+        public string TriggerKey { get; set; }
+        public ImageCompareMethod CompareMethod { get; set; }
 
+        private double toleranceLevel;
 
+        public double ToleranceLevel {
+            get { return toleranceLevel; }
+            set
+            {
+                if (value < 0.0 && value >= 1.0) throw new System.IO.InvalidDataException("VisualElement Tolerance Levels must be between 0.0 and 1.0");
+                this.toleranceLevel = value;
+            }
+        }
+        
         public VisualScriptElement()
         {
-            triggerKeyIdx = "";
-            coords = new List<Point>();
+            TriggerKey = "";
+            CompareMethod = ImageCompareMethod.COMPARE_PIXELS;
+            Coords = new List<Point>();
+            ToleranceLevel = 0.1;
         }
 
-        public VisualScriptElement(Bitmap img, List<Point> coords, string triggerKeyIdx)
+        public VisualScriptElement(Bitmap img, List<Point> coords, string triggerKeyIdx, ImageCompareMethod method, double t)
         {
-            this.img = img;
-            this.coords = coords;
-            this.triggerKeyIdx = triggerKeyIdx;
+            Image = img;
+            Coords = coords;
+            TriggerKey = triggerKeyIdx;
+            CompareMethod = method;
+            ToleranceLevel = t;
         }
         
         public void AddCoordinates(Point xy)
         {
-            if(!coords.Contains(xy)) coords.Add(xy);
+            if(!Coords.Contains(xy)) Coords.Add(xy);
         }
         
         public bool IsValid()
         {
-            return coords.Count > 0 && img != null && triggerKeyIdx.Length != 0;
+            return Coords.Count > 0 && Image != null && TriggerKey.Length != 0;
         }
-
-        public List<Point> Coords
-        {
-            get
-            {
-                return coords;
-            }
-            set
-            {
-                coords = value;
-            }
-        }
-
-        public Bitmap Image
-        {
-            get
-            {
-                return img;
-            }
-            set
-            {
-                img = value;
-            }
-        }
-
-        public string Key
-        {
-            get
-            {
-                return triggerKeyIdx;
-            }
-            set
-            {
-                triggerKeyIdx = value;
-            }
-        }
-
+        
     }
 }
