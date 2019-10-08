@@ -89,7 +89,15 @@ namespace Titan_Two_Visual_Script.Visual_Script
                     break;
                 case "trigkey":
                     xmlReader.Read();
-                    vselement.Key = xmlReader.Value;
+                    vselement.TriggerKey = xmlReader.Value;
+                    break;
+                case "comparemethod":
+                    xmlReader.Read();
+                    vselement.CompareMethod = (ImageCompareMethod)Int32.Parse(xmlReader.Value);
+                    break;
+                case "tolerancelevel":
+                    xmlReader.Read();
+                    vselement.ToleranceLevel = Double.Parse(xmlReader.Value);
                     break;
             }
         }
@@ -99,9 +107,12 @@ namespace Titan_Two_Visual_Script.Visual_Script
             switch (element.ToLower())
             {
                 case "visualgroup":
-                    groups.Add(group);
-                    group = null;
-                    vselement = null;
+                    if (group != null && group.Count > 0)
+                    {
+                        groups.Add(group);
+                        group = null;
+                        vselement = null;
+                    }
                     break;
                 case "visualelement":
                     if (!vselement.IsValid()) throw new InvalidDataException("Invalid VisualElement, must contain a path to the file, coordinates, and a trigger key");
