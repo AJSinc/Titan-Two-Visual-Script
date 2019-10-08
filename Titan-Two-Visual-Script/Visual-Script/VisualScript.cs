@@ -34,8 +34,7 @@ namespace Titan_Two_Visual_Script
                     using (Bitmap screen = ScreenGrabber.CaptureScreen())
                     foreach(Point coords in ElementGroups[i][k].Coords)
                     {
-                        if(ImageSearch.ImageRoughlyContains(screen, ElementGroups[i][k].Image, coords)) {
-                            Console.Write("Found");
+                        if(ImageSearch.ImageContains(screen, ElementGroups[i][k].Image, coords, ElementGroups[i][k].CompareMethod, ElementGroups[i][k].ToleranceLevel)) {
                             imgFound = true;
                             break;
                         }
@@ -43,8 +42,9 @@ namespace Titan_Two_Visual_Script
 
                     if (imgFound)
                     {
+                        Console.WriteLine("Found Img");
                         // send key data
-                        SendKeys.SendWait(ElementGroups[i][k].Key);
+                        //SendKeys.SendWait(ElementGroups[i][k].Key);
                         break;
                     }
                 }
